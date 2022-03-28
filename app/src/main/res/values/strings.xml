@@ -7,4 +7,6 @@
     <string name="job_intent_service">Job Intent Service</string>
     <string name="alarm_manager">Alarm Manager</string>
     <string name="work_manager">Work Manager</string>
+    <string name="notification_channel_name">"Services Test App Notifications"</string>
+    <string name="notification_channel_description">"Services Test App Notifications Description"</string>
 </resources>
