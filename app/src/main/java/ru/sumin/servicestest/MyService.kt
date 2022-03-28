@@ -40,7 +40,7 @@ class MyService : Service() {
     }
 
     private fun log(message: String) {
-        Log.d("TEST_SERVICE", message)
+        Log.d("TEST_SERVICE", "Simple Service: $message")
     }
 
     companion object {
