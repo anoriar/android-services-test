@@ -41,4 +41,8 @@ class MyJobService : JobService() {
     private fun log(message: String) {
         Log.d("TEST_SERVICE", "Job Service: $message")
     }
+
+    companion object{
+        const val JOB_ID = 111
+    }
 }
