@@ -2,13 +2,17 @@ package ru.sumin.servicestest
 
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
+import android.app.job.JobWorkItem
 import android.content.ComponentName
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import ru.sumin.servicestest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var page = 1
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -36,11 +40,11 @@ class MainActivity : AppCompatActivity() {
                 .setRequiresCharging(true)
 //                    должен быть wifi
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-//                    запуск сервиса после того как устройство выключили и снова включили
-                .setPersisted(true)
                 .build()
             val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-            jobScheduler.schedule(jobInfo)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                jobScheduler.enqueue(jobInfo, JobWorkItem(MyJobService.newIntent(this, page++)))
+            }
         }
     }
 
